@@ -12,7 +12,7 @@
 
 #
  
-* **Home page** - First you will have to the select csv file only and if you select the file and that file alreardy exists in database.then flash message will shown
+* **Home page** - First you will have to the select **csv file only** and if you select the file and that file alreardy exists in database.then flash message will shown
 
     ![Home](https://user-images.githubusercontent.com/119880818/227769283-4c071904-0282-47f6-abec-cc25199e1435.PNG)
 
