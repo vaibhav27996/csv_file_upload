@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="/css/home.css">
+
+<!--THis is hoem page with create project form and project List-->
+<div  class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                            <h5><%= name%></h5>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                            <span><input type="text" placeholder="Search Any Keyword" class="form-control  myTable" autocomplete="off" autofocus="autofocus"></span>
+                         </div>
+                    </div>
+                </div>
+
+                <div class="card-body" id="datadiv1">
+                    <p class="showSortMessage"><i>(You can asending or descending the data on click of table heading)</i></p>
+                   <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <table class="table table-striped table-bordered table-responsive" id="myTable" width="100%">
+                                <thead class="thead-dark">
+                                    <!--Dynamic heading -->
+                                    <tr>
+                                        <% let count=0; %>
+                                            
+                                        <% for(keys in header){ %> 
+                                            <th title="Sort By asending or descending" onclick="sortTable(<%= count %>)">
+                                                <%= keys;%>
+                                            </th>
+                                        <% count++; %>
+                                        <%  } %>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <!--Dynamic data-->
+                                    <% for(datas of data){ %>
+                                        <tr class="divval1">
+                                            <% for(headerkeys in header) { %>
+                                                <td>
+                                                    <%= datas[headerkeys]%>
+                                                </td>
+                                            <% } %>
+                                        </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                   
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Javascript search box and sort the reocord bt asending and decending on click of table heading-->
+<script src="/js/sort_table.js"></script>

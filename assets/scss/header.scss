@@ -1,0 +1,37 @@
+.navbar{
+  background-color: #643e57;
+
+  .navbar-brand{
+      color: white;
+      font-weight: 700;
+      font-size: 20px;
+      padding-left: 13px;
+
+      
+  }
+
+  .navbar-brand:hover{
+    color: pink;
+    box-shadow: 0px 0px 17px 6px white;
+    width: 100px;
+    border-radius: 7px;
+  }
+
+  .link-color{
+      color: white !important;
+  }
+
+  .link-color:hover{
+    color: pink;
+    box-shadow: 0px 0px 17px 6px white;
+    border-radius: 7px;
+  }
+}
+
+.links-right{
+  justify-content: end;
+
+  li a{
+      color: white;
+  }
+}

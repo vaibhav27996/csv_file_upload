@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="/css/home.css">
+
+<!--THis is hoem page with create project form and project List-->
+<div  class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                   <center><h5>Uploads CSV Files</h5></center>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <form action="/files/create"  enctype="multipart/form-data" method="post">
+                                <div class="row">
+                                    <div class="col-8 col-sm-6 col-md-6 col-lg-6" style="margin-left: -17vw;">
+                                        <input type="file" name="avatar" accept=".csv" class="form-control" style="width:35vw;" required>
+                                    </div>
+
+                                    <div class="col-4 col-sm-6 col-md-6 col-lg-6" style="margin-left: 17vw;">
+                                        <button type="submit" class="btn btn-sm btn-info formBtn"><b>Create</b></button>
+                                    </div>
+                                </div>
+
+                           </form>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th style="width: 10%;">Sr No.</th>
+                                        <th style="width: 70%;">File Name</th>
+                                        <th style="width: 20%;text-align: center;">Action</th>
+                                    </tr>
+                                </thead>
+
+                                <% var count=1;
+                                    for(files of fileList) { %>
+                                    <tr>
+                                        <th><%= count; %></th>
+                                        <th><a href="/files/view/<%= files._id%>"><%= files.name%></a></th>
+                                        <th style="width: 20%;text-align: center;"><button type="button" class="btn btn-sm btn-danger"><a href="/files/delete/<%= files._id%>">Delete</a></button></th>
+                                    </tr>
+                                <% count++;
+                                    } %>
+                            </table>
+                        </div>
+                    </div>
+                   
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
