@@ -5,11 +5,9 @@ const port= process.env.PORT || 3001;
 const app=express();
 
 const expressLayouts = require('express-ejs-layouts');
-
-
 const session = require('express-session');
 const path=require('path');
-const sassMiddleware = require('node-sass-middleware');
+// const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
 
@@ -22,13 +20,13 @@ app.use(session({
 }));
   
 
-app.use(sassMiddleware({
-    src: path.join(__dirname,'./assets/scss'),
-    dest: path.join(__dirname,'./assets/css'),
-    debug: true,
-    outputStyle: 'extended',
-    prefix: '/css'
-}));
+// app.use(sassMiddleware({
+//     src: path.join(__dirname,'./assets/scss'),
+//     dest: path.join(__dirname,'./assets/css'),
+//     debug: true,
+//     outputStyle: 'extended',
+//     prefix: '/css'
+// }));
 
 app.use(express.urlencoded({extended:false}));
 
