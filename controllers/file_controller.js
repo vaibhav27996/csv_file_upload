@@ -9,56 +9,60 @@ const result=[];
 module.exports.create=async function(req,res){
    
     try{
+      
 
-        File.uploadedAvatar(req, res, function(err){
+         File.uploadedAvatar(req, res,async function(err){
             if (err) {console.log('*****Multer Error: ', err)}
 
-            File.findOne({name: req.file.originalname},function(err,fileInfo){
-                
-                if(fileInfo==null){
+           
+            let fileInfo= await File.findOne({name: req.file.originalname});
+              
+            if(fileInfo==null){
 
-                    if(req.file.mimetype == 'text/csv') {
+                if(req.file.mimetype == 'text/csv') {
 
-                            var file = './uploads/csv_files/'+req.file.originalname;
-        
-                            console.log(file);
+                    var file = './uploads/csv_files/'+req.file.originalname;
+    
+                        
 
-                            fs.createReadStream(file)
-                                .pipe(parse())
-                                .on('data',(data)=>{
-                                    result.push(data)
-                                })
-                                .on('error',(err)=>{
-                                    console.log(err);
-                                })
-                                .on('end', () => {
+                        fs.createReadStream(file)
+                            .pipe(parse())
+                            .on('data',(data)=>{
+                                result.push(data)
+                            })
+                            .on('error',(err)=>{
+                                console.log(err);
+                            })
+                            .on('end', () => {
 
-                                   
-                                    if (req.file && req.file.mimetype == 'text/csv'){
-                                        File.create({
-                                            name:req.file.originalname,
-                                            file:result
-                                        })
-                                    }
-                                });
-        
-        
-                            
-                            req.flash('success', 'Csv File uploaded Successfully');
-                            return res.redirect('back');
-        
-                        }else{
-                            req.flash('error', 'Select only csv file');
-                            return res.redirect('back');
-        
-                        }
+                                
+                                if (req.file && req.file.mimetype == 'text/csv'){
+                                    File.create({
+                                        name:req.file.originalname,
+                                        file:result
+                                    })
+                                }
+                            });
+    
+    
+                        
+                        req.flash('success', 'Csv File uploaded Successfully');
+                        return res.redirect('back');
+    
+                    }else{
+                        req.flash('error', 'Select only csv file');
+                        return res.redirect('back');
+    
+                    }
 
-                }else if (fileInfo){
+            }else if (fileInfo){
                     req.flash('error', 'The file is already exists');
                     return res.redirect('/');
-                }
-            });
+            }
         });
+        
+
+      
 
     }catch(err){
         req.flash('error', err);

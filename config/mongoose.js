@@ -1,9 +1,10 @@
 const mongoose=require('mongoose');
 
+
+/*For store data in live server mongodb  */
 mongoose.set('strictQuery',false);
 
 let MONGO_URL = process.env.MONGO_URL;
-
 //connect to the database
 mongoose.connect(MONGO_URL , 
   {
@@ -15,6 +16,9 @@ mongoose.connect(MONGO_URL ,
     console.log(`error connecting to database` , err);
   })
 
+
+
+/*For store data in our local db */
 // mongoose.connect('mongodb://localhost:27017/csv_fileupload');
 // const db=mongoose.connection;
 
